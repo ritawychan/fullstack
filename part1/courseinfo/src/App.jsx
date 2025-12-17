@@ -10,9 +10,9 @@ const App = () => {
 
   return (
     <>
-      <div><Header header = {header}/></div>
-      <div><Content part1 = {part1} part1total ={exercises1} part2 ={part2} part2total = {exercises2} part3 = {part3} part3total = {exercises3}/></div>
-      <div><Total total = {total}/></div>
+      <Header header = {header}/>
+      <Content part1 = {part1} part1total ={exercises1} part2 ={part2} part2total = {exercises2} part3 = {part3} part3total = {exercises3}/>
+      <Total total = {total}/>
     </>
   )
 }
@@ -30,9 +30,9 @@ const Content = (props) => {
   console.log(props)
   return (
     <>
-      <p>{props.part1} {props.part1total}</p>
-      <p>{props.part2} {props.part2total}</p>
-      <p>{props.part3} {props.part3total}</p>
+      <Part part = {props.part1} parttotal = {props.part1total}/>
+      <Part part = {props.part2} parttotal = {props.part2total}/>
+      <Part part = {props.part3} parttotal = {props.part3total}/>
     </>
   )
 }
@@ -44,5 +44,15 @@ const Total = (props) => {
   )
 }
 
+const Part = (props) => {
+  console.log(props)
+  return (
+    <>
+      <p>{props.part} {props.parttotal}</p>
+    </>
+
+  )
+
+}
 
 export default App
