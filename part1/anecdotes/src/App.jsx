@@ -2,6 +2,15 @@ import { useState } from 'react'
 
 const Button = ({onClick, text}) => <button onClick={onClick}>{text}</button>
 
+const AnecdoteDisplay = ({title, anecdote, vote}) => {
+  return (
+    <>
+      <h1>{title}</h1>
+      <div>{anecdote}</div>
+      <div>Has {vote} votes</div>
+    </>
+  )
+}
 
 const App = () => {
   const anecdotes = [
@@ -14,10 +23,10 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
   ]
-   
 
   const [selected, setSelected] = useState(0)
   const [votes, setVote] = useState([0,0,0,0,0,0,0,0])
+  const maxVote = Math.max(...votes)
 
   const HandleNextAnecdoteClick = () => setSelected(Math.floor(Math.random() * anecdotes.length))
   const HandleVoteClick = () => {
@@ -30,11 +39,11 @@ const App = () => {
 
   return (
     <>
-      <div>{anecdotes[selected]}</div>
-      <div>Has {votes[selected]} votes</div>
       <div>
+        <AnecdoteDisplay title = 'Anecdote of the day' anecdote = {anecdotes[selected]} vote = {votes[selected]}/>
         <Button text = 'vote' onClick={HandleVoteClick}/>
         <Button text = 'next anecdote' onClick={HandleNextAnecdoteClick}/>
+        <AnecdoteDisplay title = 'Anecdote with most votes' anecdote = {anecdotes[votes.indexOf(maxVote)]} vote = {votes[votes.indexOf(maxVote)]}/>
       </div>
     </>
   )
